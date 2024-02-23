@@ -9,6 +9,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -17,7 +18,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private long id;
+    private UUID id;
     @Column(name = "username", nullable = false, unique = true, length = 100)
     private String username;
     @Column(name = "password", nullable = false, length = 200)
