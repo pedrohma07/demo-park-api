@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.pedrom.demoparkapi.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,11 +19,28 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+
     @Transactional(readOnly = true)
-    public User findById(String id) {
-        UUID uuid = UUID.fromString(id);
-        return userRepository.findById(uuid).orElseThrow(
+    public User findById(UUID id) {
+        return userRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("User not found")
         );
+    }
+
+
+    @Transactional // anotação para garantir que a transação seja realizada
+    public User updatePassword(UUID id, String password) {
+        User user = findById(id);
+
+        System.out.println(user);
+
+        user.setPassword(password);
+        return user;
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }
