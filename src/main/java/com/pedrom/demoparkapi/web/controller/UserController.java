@@ -2,6 +2,9 @@ package com.pedrom.demoparkapi.web.controller;
 
 import com.pedrom.demoparkapi.entity.User;
 import com.pedrom.demoparkapi.service.UserService;
+import com.pedrom.demoparkapi.web.dto.UserCreateDto;
+import com.pedrom.demoparkapi.web.dto.UserResponseDto;
+import com.pedrom.demoparkapi.web.dto.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -17,9 +20,9 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
-        user = userService.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<UserResponseDto> create(@RequestBody UserCreateDto createDto) {
+        User user = userService.save(UserMapper.toUser(createDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDto(user));
     }
 
     @GetMapping("/{id}")
