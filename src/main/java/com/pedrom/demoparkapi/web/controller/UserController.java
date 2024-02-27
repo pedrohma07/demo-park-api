@@ -3,6 +3,7 @@ package com.pedrom.demoparkapi.web.controller;
 import com.pedrom.demoparkapi.entity.User;
 import com.pedrom.demoparkapi.service.UserService;
 import com.pedrom.demoparkapi.web.dto.UserCreateDto;
+import com.pedrom.demoparkapi.web.dto.UserPasswordDto;
 import com.pedrom.demoparkapi.web.dto.UserResponseDto;
 import com.pedrom.demoparkapi.web.dto.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +27,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable UUID id) {
+    public ResponseEntity<UserResponseDto> getById(@PathVariable UUID id) {
         User user = userService.findById(id);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(UserMapper.toDto(user));
     }
 
     @GetMapping
@@ -38,10 +39,9 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> updatePassword(@PathVariable UUID id, @RequestBody User user) {
-        String password = user.getPassword();
+    public ResponseEntity<UserResponseDto> updatePassword(@PathVariable UUID id, @RequestBody UserPasswordDto passwordDto) {
 
-        User userUpdated = userService.updatePassword(id, password);
-        return ResponseEntity.ok(user);
+        User userUpdated = userService.updatePassword(id, passwordDto.getCurrentPassword(), passwordDto.getNewPassword(), passwordDto.getConfirmPassword());
+        return ResponseEntity.ok(UserMapper.toDto(userUpdated));
     }
 }

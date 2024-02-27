@@ -30,12 +30,18 @@ public class UserService {
 
 
     @Transactional // anotação para garantir que a transação seja realizada
-    public User updatePassword(UUID id, String password) {
+    public User updatePassword(UUID id, String currentPassword, String newPassword, String confirmPassword) {
+        if (!newPassword.equals(confirmPassword)) {
+            throw new RuntimeException("New password and confirm password must be the same");
+        }
         User user = findById(id);
 
-        System.out.println(user);
+        if(!user.getPassword().equals(currentPassword)){
+            throw new RuntimeException("Current password is wrong");
+        }
 
-        user.setPassword(password);
+        user.setPassword(newPassword);
+        userRepository.save(user);
         return user;
     }
 
