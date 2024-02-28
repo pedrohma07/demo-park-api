@@ -1,4 +1,4 @@
-package com.pedrom.demoparkapi.web.dto;
+package com.pedrom.demoparkapi.web.dto.User;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

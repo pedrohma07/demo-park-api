@@ -2,14 +2,13 @@ package com.pedrom.demoparkapi.web.controller;
 
 import com.pedrom.demoparkapi.entity.User;
 import com.pedrom.demoparkapi.service.UserService;
-import com.pedrom.demoparkapi.web.dto.UserCreateDto;
-import com.pedrom.demoparkapi.web.dto.UserPasswordDto;
-import com.pedrom.demoparkapi.web.dto.UserResponseDto;
+import com.pedrom.demoparkapi.web.dto.User.UserCreateDto;
+import com.pedrom.demoparkapi.web.dto.User.UserPasswordDto;
+import com.pedrom.demoparkapi.web.dto.User.UserResponseDto;
 import com.pedrom.demoparkapi.web.dto.mapper.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

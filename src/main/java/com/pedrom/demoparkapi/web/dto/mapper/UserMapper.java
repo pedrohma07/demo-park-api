@@ -1,8 +1,8 @@
 package com.pedrom.demoparkapi.web.dto.mapper;
 
 import com.pedrom.demoparkapi.entity.User;
-import com.pedrom.demoparkapi.web.dto.UserCreateDto;
-import com.pedrom.demoparkapi.web.dto.UserResponseDto;
+import com.pedrom.demoparkapi.web.dto.User.UserCreateDto;
+import com.pedrom.demoparkapi.web.dto.User.UserResponseDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 

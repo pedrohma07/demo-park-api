@@ -1,4 +1,4 @@
-package com.pedrom.demoparkapi.web.dto;
+package com.pedrom.demoparkapi.web.dto.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
